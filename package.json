@@ -1,0 +1,23 @@
+{
+  "name": "a3-jsthompson16",
+  "version": "0.1.0",
+  "description": "CS4241 Assignment 3",
+  "author": "Jarod Thompson",
+  "scripts": {
+    "start": "node server.improved.js"
+  },
+  "dependencies": {
+    "body-parser": "latest",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "helmet": "^3.21.0",
+    "lowdb": "^1.0.0",
+    "mime": "^2.4.4",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pixi.js": "^5.1.3",
+  },
+  "devDependencies": {
+    "express-session": "^1.16.2",
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "orders": [
+    {
+      "username": "Jarod Thompson",
+      "topping1": "Pepperoni",
+      "topping2": "Bacon",
+      "price": 16,
+      "id": 0,
+      "createdBy": "arathorrn"
+    },
+    {
+      "username": "Tom Gibbia",
+      "topping1": "Sausage",
+      "topping2": "Green Pepper",
+      "price": 15,
+      "id": 1,
+      "createdBy": "tgibbia"
+    },
+    {
+      "username": "Patty Alzaibak",
+      "topping1": "Pepperoni",
+      "topping2": "Garlic",
+      "price": 16,
+      "id": 3,
+      "createdBy": "arathorrn"
+    },
+    {
+      "username": "arathorrn",
+      "topping1": "asdb",
+      "topping2": "sbd",
+      "price": 16,
+      "id": 4,
+      "createdBy": "arathorrn"
+    }
+  ],
+  "users": [
+    {
+      "username": "arathorrn",
+      "password": "hello"
+    },
+    {
+      "username": "tgibbia",
+      "password": "hello"
+    },
+    {
+      "username": "patty",
+      "password": "hello"
+    }
+  ]
+}
