@@ -5,9 +5,6 @@ const express = require("express"),
     port = (process.env.PORT || 3000),
     low = require('lowdb'),
     FileSync = require('lowdb/adapters/FileSync'),
-    session   = require( 'express-session' ),
-    passport  = require( 'passport' ),
-    Local     = require( 'passport-local' ).Strategy,
     bodyParser= require( 'body-parser' ),
     helmet = require('helmet'),
     compression = require('compression'),
@@ -22,6 +19,7 @@ db.defaults({ users: [], orders: [] }).write();
 app.use(express.static(path.join(__dirname + "/public")));
 app.use(bodyParser.json());
 app.use(helmet());
+app.use(compression());
 
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname + "/public/index.html"));
@@ -40,12 +38,6 @@ app.get("/img/:filename", function(req, res) {
 
 app.get("/js/scripts.js", function(req, res) {
   res.sendFile(path.join(__dirname + "/js/scripts.js"));
-});
-
-app.get("/orders", function(req, res) {
-  const state = db.getState();
-  const str = JSON.stringify(state, null, 2);
-  sendOrderData(res, str);
 });
 
 app.post("/submit", function(req, res) {
@@ -112,66 +104,10 @@ app.post("/delete", function(req, res) {
   })
 });
 
-const myLocalStrategy = function(username, password, done) {
-  const user = db.get('users').find({ username: username}).value();
-
-  if (user === undefined) {
-    const newUser = {
-      'username': username,
-      'password': password,
-    };
-
-    db.get( 'users' ).push(newUser).write();
-    currentUser = username;
-    return done( null, { username, password });
-  }
-  else if (user.password === password) {
-    currentUser = username;
-    return done( null, { username, password });
-  }
-  else {
-    return done( null, false, { message: 'incorrect password'});
-  }
-};
-
-passport.use( new Local( myLocalStrategy ) );
-
-passport.serializeUser( (user, done) => done( null, user.username));
-
-passport.deserializeUser( (username, done) => {
-  const user = db.get('users').find({ username: username}).value();
-
-  if ( user !== undefined) {
-    done( null, user);
-  }
-  else {
-    done( null, false, { message: 'user not found; session not restored'})
-  }
-});
-
-app.use( session({ secret:'cats cats cats', resave:false, saveUninitialized:false }) );
-app.use(passport.initialize());
-app.use(passport.session());
-
-app.post(
-    '/login',
-    passport.authenticate( 'local'),
-    function( req, res ) {
-      res.json({status: true})
-    }
-);
-
 let server = http.createServer(app);
 server.listen(port, function () {
   console.log("server started running");
 });
-
-const sendOrderData = function( response, orders ) {
-  const type = mime.getType(orders);
-  response.writeHead(200, { 'Content-Type': type });
-  response.write(orders);
-  response.end();
-};
 
 const calcPrice = function(topping1, topping2) {
   let price = 10;

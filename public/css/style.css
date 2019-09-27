@@ -1,43 +1,6 @@
-#table {
-    font-family: 'Cambria', sans-serif;
-    font-size: 20px;
-    display: none;
-    width: 100%;
-    text-align: center;
-    flex-direction: column;
-    align-items: center;
-}
-
-#update-form {
-    display: none;
-    width: 100%;
-    align-items: center;
-    position: relative;
-    justify-content: center;
-    text-align: center;
-    flex-direction: column;
-}
-
-#update-id {
-    display: none;
-}
-
-#new-order-link {
-    display: none;
-}
-
-#current-orders-link {
-    display: none;
-}
-
-#current-username {
-    display: none;
-}
-
-#order-confirmed {
-    display: none;
-    flex-direction: column;
-    align-items: center;
+body {
+    margin: 0;
+    background-color: black;
 }
 
 header {
@@ -77,35 +40,6 @@ form {
     float: left;
     width: 100%;
     justify-content: center;
-}
-
-#form {
-    position: relative;
-    display: none;
-    justify-content: center;
-    width: 100%;
-    text-align: center;
-    flex-direction: column;
-}
-
-#login {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    text-align: center;
-    flex-direction: column;
-}
-
-#mycanvas {
-    position: relative;
-    display: block;
-    margin-top: 20px;
-    left: 40%;
-    top: 50%;
-    justify-content: center;
-    text-align: center;
-    flex-direction: column;
 }
 
 label, button{
