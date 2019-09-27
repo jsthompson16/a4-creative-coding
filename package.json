@@ -5,7 +5,7 @@
   "author": "Jarod Thompson",
   "scripts": {
     "start": "node server.improved.js",
-    "hot-reload": "watchify ./public/js/scripts.js -o ./public/bundle.js -v"
+    "hot-reload": "watchify public/js/main.js -o ./public/bundle.js -v"
   },
   "dependencies": {
     "body-parser": "latest",
@@ -15,8 +15,10 @@
     "eslint": "^6.4.0",
     "express": "^4.17.1",
     "helmet": "^3.21.0",
-    "lowdb": "^1.0.0",
     "mime": "^2.4.4",
     "watchify": "^3.11.1"
+  },
+  "devDependencies": {
+    "dat.gui": "^0.7.6"
   }
 }

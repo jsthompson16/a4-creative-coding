@@ -1,15 +1,35 @@
 const d3 = require("d3");
-let radius = 40, y = window.innerHeight / 2, x = window.innerWidth / 2;
+const dat = require("dat.gui");
+let gui;
 const xvals = [];
 const yvals = [];
+
+let globals = {
+	radius: 40,
+	y: window.innerHeight / 2,
+	x: window.innerWidth / 2,
+	xmulti: 350,
+	ymulti: 350
+};
+
+const script = document.createElement("script");
+script.src = "https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.6/dat.gui.min.js";
+document.head.appendChild( script);
+
+if ( typeof gui !== "undefined" ) gui.destroy();
+gui = new dat.GUI();
+gui.add(globals, "xmulti");
+gui.add(globals, "ymulti");
+gui.add(globals, "radius");
+
 
 function calcY(d, i) {
 	let randomVal;
 	if (Math.random() > 0.5) {
-		randomVal = y + Math.random() * 350;
+		randomVal = globals.y + Math.random() * globals.ymulti;
 	}
 	else {
-		randomVal = y - Math.random() * 350;
+		randomVal = globals.y - Math.random() * globals.ymulti;
 	}
 
 	yvals.push(randomVal);
@@ -20,10 +40,10 @@ function calcY(d, i) {
 function calcX(d, i) {
 	let randomVal;
 	if (Math.random() > 0.5) {
-		randomVal = x + Math.random() * 350;
+		randomVal = globals.x + Math.random() * globals.xmulti;
 	}
 	else {
-		randomVal = x - Math.random() * 350;
+		randomVal = globals.x - Math.random() * globals.ymulti;
 	}
 
 	xvals.push(randomVal);
@@ -32,7 +52,10 @@ function calcX(d, i) {
 }
 
 window.addEventListener( "load", () => {
+	createCircles();
+});
 
+function createCircles() {
 	document.body.appendChild(
 		document.createElementNS( "http://www.w3.org/2000/svg", "svg" )
 	);
@@ -48,17 +71,17 @@ window.addEventListener( "load", () => {
 				.attr( "fill", "rgba( 237, 28, 28, .5 )")
 				.attr( "cx", calcX )
 				.attr( "cy", calcY )
-				.attr( "r", radius );
+				.attr( "r", globals.radius );
 
 			group.append( "text" )
 				.text( d => d.value.name )
 				.attr( "fill", "white" )
 				.attr( "x", function(d, i) {
-					return xvals[i] - radius + 10;
+					return xvals[i] - globals.radius + 10;
 				} )
 				.attr( "y", function(d, i) {
-					return yvals[i] + radius;
+					return yvals[i] + globals.radius;
 				} );
 
 		});
-});
+}
