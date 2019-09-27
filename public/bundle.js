@@ -19111,34 +19111,34 @@ exports.version = version;
 },{"d3-array":1,"d3-axis":2,"d3-brush":3,"d3-chord":4,"d3-collection":5,"d3-color":6,"d3-contour":7,"d3-dispatch":8,"d3-drag":9,"d3-dsv":10,"d3-ease":11,"d3-fetch":12,"d3-force":13,"d3-format":14,"d3-geo":15,"d3-hierarchy":16,"d3-interpolate":17,"d3-path":18,"d3-polygon":19,"d3-quadtree":20,"d3-random":21,"d3-scale":23,"d3-scale-chromatic":22,"d3-selection":24,"d3-shape":25,"d3-time":27,"d3-time-format":26,"d3-timer":28,"d3-transition":29,"d3-voronoi":30,"d3-zoom":31}],33:[function(require,module,exports){
 const d3 = require("d3");
 
-window.addEventListener( 'load', () => {
-    const radius = 40,
-        y = 50;
+window.addEventListener( "load", () => {
+	const radius = 40,
+		y = 50;
 
-    document.body.appendChild(
-        document.createElementNS( 'http://www.w3.org/2000/svg', 'svg' )
-    );
+	document.body.appendChild(
+		document.createElementNS( "http://www.w3.org/2000/svg", "svg" )
+	);
 
-    fetch( "https://api.exchangerate-api.com/v4/latest/USD" )
-        .then( data => data.json() )
-        .then( jsonData => {
-            //console.log( d3.select('body').selectAll('div') )
-            const group = d3.select( 'svg' ).selectAll( 'circle' )
-                .data( d3.entries( jsonData.rates ) )
-                .join( 'g' );
+	fetch( "https://api.exchangerate-api.com/v4/latest/USD" )
+		.then( data => data.json() )
+		.then( jsonData => {
+			//console.log( d3.select('body').selectAll('div') )
+			const group = d3.select( "svg" ).selectAll( "circle" )
+				.data( d3.entries( jsonData.rates ) )
+				.join( "g" );
 
-            group.append( 'circle')
-                .attr( 'fill', d => `rgba( ${ Math.floor(d.value) }, 100, 100, .5 )` )
-                .attr( 'cx', (d,i) => i * radius )
-                .attr( 'cy', y )
-                .attr( 'r', radius );
+			group.append( "circle")
+				.attr( "fill", d => `rgba( ${ Math.floor(d.value) }, 100, 100, .5 )` )
+				.attr( "cx", (d,i) => i * radius )
+				.attr( "cy", y )
+				.attr( "r", radius );
 
-            group.append( 'text' )
-                .text( d => d.key )
-                .attr( 'fill', 'white' )
-                .attr( 'x', (d,i) => i * radius - radius / 2 )
-                .attr( 'y', y + radius + 25 );
+			group.append( "text" )
+				.text( d => d.key )
+				.attr( "fill", "white" )
+				.attr( "x", (d,i) => i * radius - radius / 2 )
+				.attr( "y", y + radius + 25 );
 
-        })
+		});
 });
 },{"d3":32}]},{},[33]);
