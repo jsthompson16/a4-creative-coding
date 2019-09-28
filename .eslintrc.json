@@ -21,10 +21,6 @@
             "error",
             "tab"
         ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
         "quotes": [
             "error",
             "double"
@@ -37,10 +33,6 @@
             "error",
             "multi-line"
         ],
-        "max-classes-per-file": [
-            "error",
-            1
-        ],
         "array-bracket-newline": [
             "error",
             { "minItems": 2 }
@@ -48,7 +40,6 @@
         "array-element-newline": [
             "error",
             { "multiline": true, "minItems": 2 }
-        ],
-        "camelcase": "error"
+        ]
     }
 }

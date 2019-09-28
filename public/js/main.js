@@ -3,25 +3,16 @@ const dat = require("dat.gui");
 let gui;
 const xvals = [];
 const yvals = [];
+let showDocs = true;
 
 let globals = {
-	radius: 40,
+	radius: 25,
 	y: window.innerHeight / 2,
 	x: window.innerWidth / 2,
 	xmulti: 350,
-	ymulti: 350
+	ymulti: 350,
+	alpha: 0.5
 };
-
-const script = document.createElement("script");
-script.src = "https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.6/dat.gui.min.js";
-document.head.appendChild( script);
-
-if ( typeof gui !== "undefined" ) gui.destroy();
-gui = new dat.GUI();
-gui.add(globals, "xmulti").onChange(drawCircles);
-gui.add(globals, "ymulti").onChange(drawCircles);
-gui.add(globals, "radius").onChange(drawCircles);
-
 
 function calcY(d, i) {
 	let randomVal;
@@ -137,7 +128,7 @@ function calcColor(d, i) {
 		break;
 	}
 
-	return `rgba( ${ red }, ${ green }, ${ blue }, .5 )`;
+	return `rgba( ${ red }, ${ green }, ${ blue }, ${ globals.alpha } )`;
 }
 
 window.addEventListener( "load", () => {
@@ -147,6 +138,30 @@ window.addEventListener( "load", () => {
 	);
 
 	drawCircles();
+
+	if ( typeof gui !== "undefined" ) gui.destroy();
+	gui = new dat.GUI();
+	gui.add(globals, "xmulti").onChange(drawCircles);
+	gui.add(globals, "ymulti").onChange(drawCircles);
+	gui.add(globals, "radius").onChange(drawCircles);
+	gui.add(globals, "x").onChange(drawCircles);
+	gui.add(globals, "y").onChange(drawCircles);
+	gui.add(globals, "alpha").onChange(drawCircles);
+});
+
+window.addEventListener("keydown", function(event) {
+	if (event.key === "h" || event.key === "H") {
+		if (showDocs) {
+			document.getElementById("doc1").style.display = "none";
+			document.getElementById("doc2").style.display = "none";
+			showDocs = false;
+		}
+		else {
+			document.getElementById("doc1").style.display = "flex";
+			document.getElementById("doc2").style.display = "flex";
+			showDocs = true;
+		}
+	}
 });
 
 function drawCircles() {

@@ -1,28 +1,16 @@
-## Pizza Ordering Website
+## Pokemon Generation 1 Data Visualization
 Jarod Thompson
-http://a3-jarodthompson.glitch.me
+http://a4-jarodthompson.glitch.me
 
-My website allows you to order pizza from Classic Pizza, allowing up to two toppings per pizza. 
-You can order a new pizza, see your orders currently being worked on, edit them, and delete them.
-Click on the "View Current Orders" link to see the table of current orders, and click on the "Order now!"
-link to bring back up the form to order a new pizza.
+My website represents each first generation Pokemon by a circle with an appropriate color based on its type and its name. 
+Users are able to change the starting x and y position of the circles, the variance that each circle moves from that 
+starting position in both the x and y direction, the alpha values of the circles, and the radii of the circles. 
 
-Most of the challenges I faced involved changing my code from using a local array to using lowdb to store its information. 
-I had trouble with editing and deleting information in particular.
+One challenge I faced was getting the display of circles to update along with the dat.gui value changes. Another challenge
+was getting the svg circles to display on the entire window rather than the small initial svg values.
 
-I used Passport and lowdb because they were the easiest to implement.
-
-I used sanitize.css for my CSS framework because I wanted a simple, clean look to my website.
-
-I used passport for user authentication. 
-I used morgan to log all my HTTP requests to the console. 
-I used helmet to set the HTTP request headers for me.
-I used response-time and node-statsd to collect response times for my HTTP requests.
-
-## Technical Achievements
-- **Created PIXI scrolling picture**: Learned how use Pixi.js in order to create a scrolling picture of a pizza to add
-                                      some color to my website
+I used eslint as my JS linter, using rules such as always using semi-colons, the allowance for single line if else statements
+if possible but requiring brackets everywhere else, the use of only double quotes, indents always being tabs, and some array formatting.
 
 ### Design/Evaluation Achievements
-- **CSS**: I used two additional CSS frameworks, typography.css and forms.css, to help keep things consistent
-           with the sanitize.css framework.
+- **Accessibility**: There are no div or span elements in my document.
